@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tabletop — Creator Marketing for Restaurants</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF6EE;
+    --cream-dark: #F0E6D4;
+    --white: #FFFFFF;
+    --dark: #1E2C24;
+    --dark-deep: #14201A;
+    --terracotta: #C8553D;
+    --terracotta-dark: #A8442C;
+    --peach: #E89F71;
+    --text-primary: #1A1A1A;
+    --text-body: #2C2C2C;
+    --text-muted: #6B6B6B;
+    --border: #E5DDD0;
+    --green: #2A5840;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--cream);
+    color: var(--text-body);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body.view-creators { background: var(--cream); }
+
+  .display, h1, h2, h3 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-variation-settings: "opsz" 144, "SOFT" 50;
+    color: var(--text-primary);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+  }
+
+  h2 { font-size: clamp(36px, 5vw, 56px); line-height: 1.05; letter-spacing: -0.025em; }
+  h3 { font-size: 28px; letter-spacing: -0.015em; }
+
+  .container { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(250, 246, 238, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 32px; max-width: 1280px; margin: 0 auto;
+  }
+  .logo {
+    font-family: 'Fraunces', serif;
+    font-size: 26px; font-weight: 600; letter-spacing: -0.02em;
+    color: var(--text-primary);
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .logo .dot { color: var(--terracotta); }
+  .nav-links { display: flex; align-items: center; gap: 36px; }
+  .nav-links a {
+    color: var(--text-body); text-decoration: none;
+    font-size: 15px; font-weight: 500;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--terracotta); }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 22px;
+    background: var(--text-primary); color: var(--white);
+    border: none; border-radius: 999px;
+    font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 500;
+    cursor: pointer; text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn:hover { background: var(--terracotta); }
+  .btn.btn-primary { background: var(--terracotta); }
+  .btn.btn-primary:hover { background: var(--terracotta-dark); }
+  .btn.btn-large { padding: 16px 30px; font-size: 16px; }
+  .btn.btn-light { background: var(--white); color: var(--text-primary); }
+  .btn.btn-light:hover { background: var(--cream); }
+  .btn .arrow { transition: transform 0.2s; }
+  .btn:hover .arrow { transform: translateX(3px); }
+
+  /* VIEW TOGGLE */
+  .view-restaurants .creators-view { display: none; }
+  .view-creators .restaurants-view { display: none; }
+  .view-restaurants .nav-restaurants { display: flex; }
+  .view-restaurants .nav-creators { display: none; }
+  .view-creators .nav-restaurants { display: none; }
+  .view-creators .nav-creators { display: flex; }
+
+  /* HERO */
+  .hero {
+    padding: 80px 0 120px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .eyebrow {
+    display: inline-block;
+    font-size: 13px; font-weight: 600;
+    color: var(--terracotta);
+    text-transform: uppercase; letter-spacing: 0.12em;
+    margin-bottom: 24px;
+  }
+  .creators-view .eyebrow { color: var(--peach); }
+  h1 {
+    font-size: clamp(48px, 7vw, 84px);
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+    margin-bottom: 28px;
+  }
+  h1 em {
+    font-style: italic;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+    color: var(--terracotta);
+  }
+  .creators-view h1 em { color: var(--peach); }
+  .hero-sub {
+    font-size: 19px; line-height: 1.55;
+    color: var(--text-muted);
+    max-width: 520px;
+    margin-bottom: 36px;
+  }
+  .hero-ctas { display: flex; gap: 14px; align-items: center; }
+  .hero-secondary {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 12px 0;
+    transition: color 0.2s;
+  }
+  .hero-secondary:hover { color: var(--terracotta); }
+
+  /* HERO VISUAL */
+  .hero-visual {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    border-radius: 24px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #E89F71 0%, #C8553D 50%, #8B3528 100%);
+    box-shadow: 0 30px 80px rgba(200, 85, 61, 0.25), 0 8px 30px rgba(0, 0, 0, 0.08);
+  }
+  .hero-visual::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=80');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.85;
+    mix-blend-mode: multiply;
+  }
+  .hero-visual::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(20, 32, 26, 0.6) 100%);
+  }
+  .hero-stat-card {
+    position: absolute;
+    background: var(--white);
+    border-radius: 20px;
+    padding: 18px 22px;
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.15);
+    display: flex; align-items: center; gap: 14px;
+    font-family: 'Inter', sans-serif;
+  }
+  .hero-stat-card.top { top: 28px; left: 28px; }
+  .hero-stat-card.bottom { bottom: 28px; right: 28px; }
+  .hero-stat-card .avatar {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--peach), var(--terracotta));
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-weight: 600; font-size: 16px;
+    flex-shrink: 0;
+  }
+  .hero-stat-card .label {
+    font-size: 11px; color: var(--text-muted);
+    text-transform: uppercase; letter-spacing: 0.08em;
+    font-weight: 600;
+  }
+  .hero-stat-card .value {
+    font-size: 18px; color: var(--text-primary);
+    font-weight: 600;
+    margin-top: 2px;
+  }
+  .hero-stat-card .value .accent { color: var(--terracotta); }
+
+  /* STATS BAR */
+  .stats-band {
+    background: var(--dark);
+    color: var(--cream);
+    padding: 100px 0;
+  }
+  .stats-band .container { max-width: 1280px; }
+  .stats-eyebrow {
+    color: var(--peach);
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  .stats-heading {
+    color: var(--cream);
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 80px;
+  }
+  .stats-heading em {
+    font-style: italic;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+    color: var(--peach);
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+  }
+  .stat {
+    text-align: left;
+    padding-top: 32px;
+    border-top: 1px solid rgba(232, 159, 113, 0.2);
+  }
+  .stat-number {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+    font-size: clamp(64px, 8vw, 92px);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    color: var(--peach);
+    margin-bottom: 18px;
+  }
+  .stat-label {
+    font-size: 15px;
+    color: var(--cream);
+    line-height: 1.45;
+    opacity: 0.85;
+  }
+  .stats-source {
+    text-align: center;
+    margin-top: 60px;
+    font-size: 13px;
+    color: rgba(250, 246, 238, 0.5);
+    font-style: italic;
+  }
+
+  /* SECTION GENERIC */
+  section { padding: 120px 0; }
+  .section-eyebrow {
+    color: var(--terracotta);
+    margin-bottom: 20px;
+  }
+  .creators-view .section-eyebrow { color: var(--terracotta); }
+  .section-heading {
+    max-width: 680px;
+    margin-bottom: 28px;
+  }
+  .section-heading em {
+    font-style: italic;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+    color: var(--terracotta);
+  }
+  .section-intro {
+    font-size: 19px;
+    color: var(--text-muted);
+    max-width: 620px;
+    line-height: 1.55;
+  }
+
+  /* PROBLEM */
+  .problem {
+    background: var(--cream);
+  }
+  .problem-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: start;
+  }
+  .problem-body p {
+    font-size: 18px;
+    color: var(--text-body);
+    margin-bottom: 20px;
+    line-height: 1.65;
+  }
+  .problem-body p:first-of-type {
+    font-size: 22px;
+    color: var(--text-primary);
+    line-height: 1.45;
+    margin-bottom: 28px;
+  }
+  .problem-quote {
+    background: var(--white);
+    border-radius: 24px;
+    padding: 48px;
+    border: 1px solid var(--border);
+    position: relative;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.04);
+  }
+  .problem-quote .quote-mark {
+    font-family: 'Fraunces', serif;
+    font-size: 80px;
+    line-height: 0.8;
+    color: var(--terracotta);
+    margin-bottom: 16px;
+    font-style: italic;
+  }
+  .problem-quote .quote-text {
+    font-family: 'Fraunces', serif;
+    font-size: 24px;
+    line-height: 1.4;
+    color: var(--text-primary);
+    margin-bottom: 24px;
+    letter-spacing: -0.01em;
+  }
+  .problem-quote .quote-attr {
+    font-size: 14px;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  /* HOW IT WORKS */
+  .how-it-works {
+    background: var(--cream-dark);
+  }
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    margin-top: 80px;
+  }
+  .step {
+    background: var(--white);
+    padding: 36px 30px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .step:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06);
+  }
+  .step-num {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+    font-size: 56px;
+    line-height: 1;
+    color: var(--terracotta);
+    margin-bottom: 24px;
+    font-style: italic;
+  }
+  .step-title {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 14px;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+  }
+  .step-body {
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.55;
+  }
+
+  /* WHY RESTAURANTS WIN */
+  .why-win {
+    background: var(--cream);
+  }
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 80px 60px;
+    margin-top: 80px;
+  }
+  .pillar {
+    border-top: 2px solid var(--text-primary);
+    padding-top: 32px;
+  }
+  .pillar-icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    background: var(--terracotta);
+    color: white;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 24px;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 22px;
+    font-style: italic;
+  }
+  .pillar-title {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 500;
+    margin-bottom: 16px;
+    color: var(--text-primary);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+  .pillar-body {
+    font-size: 16px;
+    color: var(--text-body);
+    line-height: 1.6;
+  }
+
+  /* PRICING */
+  .pricing {
+    background: var(--dark);
+    color: var(--cream);
+  }
+  .pricing .section-heading { color: var(--cream); }
+  .pricing .section-heading em { color: var(--peach); }
+  .pricing .section-eyebrow { color: var(--peach); }
+  .pricing .section-intro { color: rgba(250, 246, 238, 0.7); }
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 80px;
+  }
+  .price-card {
+    background: var(--dark-deep);
+    border: 1px solid rgba(232, 159, 113, 0.15);
+    border-radius: 24px;
+    padding: 44px 36px;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .price-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(232, 159, 113, 0.4);
+  }
+  .price-card.featured {
+    background: var(--terracotta);
+    border-color: var(--terracotta);
+    position: relative;
+  }
+  .price-card.featured::before {
+    content: 'Most popular';
+    position: absolute;
+    top: -12px; left: 36px;
+    background: var(--peach);
+    color: var(--dark-deep);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 6px 12px;
+    border-radius: 999px;
+  }
+  .price-tier {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--peach);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .price-card.featured .price-tier { color: var(--cream); }
+  .price-for {
+    font-size: 14px;
+    color: rgba(250, 246, 238, 0.65);
+    margin-bottom: 32px;
+    line-height: 1.5;
+  }
+  .price-amount {
+    display: flex; align-items: baseline; gap: 8px;
+    margin-bottom: 32px;
+  }
+  .price-num {
+    font-family: 'Fraunces', serif;
+    font-size: 56px;
+    font-weight: 500;
+    color: var(--cream);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .price-period {
+    font-size: 16px;
+    color: rgba(250, 246, 238, 0.65);
+  }
+  .price-features {
+    list-style: none;
+    margin-bottom: 36px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid rgba(232, 159, 113, 0.15);
+  }
+  .price-card.featured .price-features { border-bottom-color: rgba(255, 255, 255, 0.2); }
+  .price-features li {
+    padding: 8px 0;
+    font-size: 14px;
+    color: rgba(250, 246, 238, 0.85);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.4;
+  }
+  .price-features li::before {
+    content: '✓';
+    color: var(--peach);
+    flex-shrink: 0;
+    font-weight: 700;
+  }
+  .price-card.featured .price-features li::before { color: var(--cream); }
+  .price-perf {
+    font-size: 13px;
+    color: rgba(250, 246, 238, 0.6);
+    font-style: italic;
+    margin-bottom: 28px;
+    line-height: 1.4;
+  }
+  .price-card .btn {
+    width: 100%;
+    justify-content: center;
+    background: var(--cream);
+    color: var(--text-primary);
+  }
+  .price-card .btn:hover { background: var(--peach); color: var(--text-primary); }
+  .price-card.featured .btn { background: var(--cream); }
+
+  /* TESTIMONIALS */
+  .testimonials { background: var(--cream); }
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 80px;
+  }
+  .testimonial {
+    background: var(--white);
+    border-radius: 24px;
+    padding: 40px;
+    border: 1px solid var(--border);
+  }
+  .testimonial-text {
+    font-family: 'Fraunces', serif;
+    font-size: 19px;
+    line-height: 1.5;
+    color: var(--text-primary);
+    margin-bottom: 28px;
+    letter-spacing: -0.005em;
+  }
+  .testimonial-attr {
+    display: flex; align-items: center; gap: 14px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+  .testimonial-avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--peach), var(--terracotta));
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-weight: 600; font-size: 15px;
+    flex-shrink: 0;
+  }
+  .testimonial-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  .testimonial-role {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  /* FINAL CTA */
+  .final-cta {
+    background: var(--cream);
+    text-align: center;
+    padding: 140px 0;
+  }
+  .final-cta-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    background: var(--terracotta);
+    color: var(--cream);
+    padding: 80px 48px;
+    border-radius: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .final-cta-inner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 70% 30%, rgba(232, 159, 113, 0.4), transparent 60%);
+  }
+  .final-cta h2 {
+    color: var(--cream);
+    font-size: clamp(40px, 5vw, 60px);
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .final-cta h2 em {
+    font-style: italic;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+    color: var(--peach);
+  }
+  .final-cta p {
+    font-size: 19px;
+    color: rgba(250, 246, 238, 0.9);
+    margin-bottom: 36px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .final-cta .btn {
+    position: relative;
+    background: var(--cream);
+    color: var(--text-primary);
+  }
+  .final-cta .btn:hover { background: var(--white); }
+
+  /* CREATORS PAGE — specific styles */
+  .creators-view .hero-visual {
+    background: linear-gradient(135deg, var(--peach) 0%, var(--terracotta) 100%);
+  }
+  .creators-view .hero-visual::before {
+    background-image: url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=900&q=80');
+  }
+  .creators-view h1 em { color: var(--peach); }
+  .creators-view .btn.btn-primary { background: var(--terracotta); }
+
+  /* CREATOR EARNINGS */
+  .earnings {
+    background: var(--cream);
+  }
+  .earnings-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 80px;
+  }
+  .earnings-card {
+    background: var(--white);
+    border-radius: 24px;
+    padding: 40px;
+    border: 1px solid var(--border);
+    position: relative;
+  }
+  .earnings-card.highlight {
+    background: var(--dark);
+    color: var(--cream);
+    border-color: var(--dark);
+  }
+  .earnings-profile {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 28px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--border);
+  }
+  .earnings-card.highlight .earnings-profile {
+    border-bottom-color: rgba(232, 159, 113, 0.2);
+  }
+  .earnings-avatar {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--peach), var(--terracotta));
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-weight: 600; font-size: 18px;
+    flex-shrink: 0;
+  }
+  .earnings-name {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+  }
+  .earnings-card.highlight .earnings-name { color: var(--cream); }
+  .earnings-meta {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+  .earnings-card.highlight .earnings-meta { color: rgba(250, 246, 238, 0.65); }
+  .earnings-line {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 12px 0;
+    font-size: 14px;
+    color: var(--text-body);
+  }
+  .earnings-card.highlight .earnings-line { color: rgba(250, 246, 238, 0.85); }
+  .earnings-amount {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--text-primary);
+  }
+  .earnings-card.highlight .earnings-amount { color: var(--peach); }
+  .earnings-total {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 2px solid var(--text-primary);
+    display: flex; justify-content: space-between; align-items: baseline;
+  }
+  .earnings-card.highlight .earnings-total { border-top-color: var(--peach); }
+  .earnings-total-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .earnings-card.highlight .earnings-total-label { color: var(--peach); }
+  .earnings-total-amount {
+    font-family: 'Fraunces', serif;
+    font-size: 36px;
+    font-weight: 500;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+  }
+  .earnings-card.highlight .earnings-total-amount { color: var(--cream); }
+  .earnings-note {
+    margin-top: 16px;
+    font-size: 13px;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+  .earnings-card.highlight .earnings-note { color: rgba(250, 246, 238, 0.6); }
+
+  /* CREATOR LOVE LIST */
+  .why-creators {
+    background: var(--cream-dark);
+  }
+  .creator-love-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 60px;
+    margin-top: 80px;
+  }
+  .love-item {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+  }
+  .love-icon {
+    width: 56px; height: 56px;
+    border-radius: 16px;
+    background: var(--terracotta);
+    color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-size: 24px;
+    font-style: italic;
+    flex-shrink: 0;
+    font-weight: 600;
+  }
+  .love-content h3 {
+    font-size: 22px;
+    margin-bottom: 8px;
+  }
+  .love-content p {
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.55;
+  }
+
+  /* WHAT WE LOOK FOR */
+  .look-for {
+    background: var(--cream);
+  }
+  .look-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px 60px;
+    margin-top: 60px;
+  }
+  .look-item {
+    border-left: 3px solid var(--terracotta);
+    padding-left: 24px;
+  }
+  .look-item h3 {
+    font-size: 21px;
+    margin-bottom: 8px;
+  }
+  .look-item p {
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+  .dont-list {
+    margin-top: 80px;
+    background: var(--dark);
+    border-radius: 24px;
+    padding: 56px;
+    color: var(--cream);
+  }
+  .dont-list h3 {
+    color: var(--cream);
+    margin-bottom: 28px;
+  }
+  .dont-list ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px 32px;
+  }
+  .dont-list li {
+    padding: 12px 0;
+    color: rgba(250, 246, 238, 0.85);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 15px;
+    border-bottom: 1px solid rgba(232, 159, 113, 0.12);
+  }
+  .dont-list li::before {
+    content: '✕';
+    color: var(--peach);
+    font-weight: 700;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark-deep);
+    color: rgba(250, 246, 238, 0.7);
+    padding: 80px 0 40px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 60px;
+  }
+  footer .logo { color: var(--cream); }
+  .footer-tagline {
+    margin-top: 16px;
+    font-size: 14px;
+    line-height: 1.6;
+    max-width: 280px;
+  }
+  .footer-col h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--cream);
+    margin-bottom: 20px;
+  }
+  .footer-col a {
+    display: block;
+    color: rgba(250, 246, 238, 0.7);
+    text-decoration: none;
+    font-size: 14px;
+    padding: 4px 0;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--peach); }
+  .footer-bottom {
+    padding-top: 32px;
+    border-top: 1px solid rgba(232, 159, 113, 0.15);
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero-grid, .problem-grid { grid-template-columns: 1fr; gap: 60px; }
+    .stats-grid, .steps-grid, .pricing-grid, .testimonial-grid, .earnings-grid { grid-template-columns: 1fr; }
+    .pillars-grid, .creator-love-grid, .look-list, .dont-list ul { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .nav-links { gap: 20px; }
+    .nav-links a:not(.btn) { display: none; }
+    section { padding: 80px 0; }
+    h1 { font-size: 48px; }
+  }
+</style>
+</head>
+<body class="view-restaurants">
+
+<!-- ============= NAV ============= -->
+<nav>
+  <div class="nav-inner">
+    <a class="logo" onclick="showView('restaurants')">Tabletop<span class="dot">.</span></a>
+
+    <div class="nav-links nav-restaurants">
+      <a onclick="scrollToSection('how-it-works')">How it works</a>
+      <a onclick="scrollToSection('pricing')">Pricing</a>
+      <a onclick="showView('creators')">For Creators</a>
+      <a class="btn btn-primary" onclick="scrollToSection('final-cta')">Book a demo</a>
+    </div>
+
+    <div class="nav-links nav-creators">
+      <a onclick="scrollToSection('earnings')">Earnings</a>
+      <a onclick="scrollToSection('look-for')">Apply</a>
+      <a onclick="showView('restaurants')">For Restaurants</a>
+      <a class="btn btn-primary" onclick="scrollToSection('look-for')">Apply to join</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============= RESTAURANTS VIEW ============= -->
+<div class="restaurants-view">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">Creator marketing for restaurants</div>
+          <h1>Fill your tables with new customers from <em>local creators.</em></h1>
+          <p class="hero-sub">A managed creator program built specifically for restaurants. Curated local food creators. Multi-touchpoint campaigns. Verified new-customer attribution. One flat monthly subscription.</p>
+          <div class="hero-ctas">
+            <a class="btn btn-primary btn-large" onclick="scrollToSection('final-cta')">Book a demo<span class="arrow">→</span></a>
+            <a class="hero-secondary" onclick="scrollToSection('how-it-works')">See how it works ↓</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-stat-card top">
+            <div class="avatar">M</div>
+            <div>
+              <div class="label">@maria_eats_atx</div>
+              <div class="value">+24 new customers <span class="accent">this week</span></div>
+            </div>
+          </div>
+          <div class="hero-stat-card bottom">
+            <div class="avatar" style="background: linear-gradient(135deg, #2A5840, #1F3A2E);">$</div>
+            <div>
+              <div class="label">Verified visits this month</div>
+              <div class="value">142 redemptions</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAND -->
+  <section class="stats-band">
+    <div class="container">
+      <div class="eyebrow stats-eyebrow">The data is in</div>
+      <h2 class="stats-heading">Restaurant discovery has fundamentally <em>shifted to creators.</em></h2>
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-number">45%</div>
+          <div class="stat-label">of US consumers buy at least one item per month based on a creator recommendation.</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">31%</div>
+          <div class="stat-label">have tried a new restaurant after seeing a creator post — the #1 creator-influenced action.</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">22%</div>
+          <div class="stat-label">convert within 24 hours of seeing a creator recommendation.</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">69%</div>
+          <div class="stat-label">of Gen Z buy from creator recommendations every single month.</div>
+        </div>
+      </div>
+      <p class="stats-source">Source: Statista 2026 · NeoReach Creator Impact Report 2026</p>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="problem">
+    <div class="container">
+      <div class="problem-grid">
+        <div>
+          <div class="eyebrow section-eyebrow">The problem</div>
+          <h2 class="section-heading">Why your last Instagram ad didn't <em>actually work.</em></h2>
+        </div>
+        <div class="problem-body">
+          <p>Restaurants spend on Yelp, Instagram boosts, third-party delivery promos, and one-off creator deals — and most of it underperforms. The reason is simple: consumers don't trust ads. They trust people.</p>
+          <p>And not just any people. They trust local creators whose dinner recommendations they already follow. Almost a third of US consumers have tried a new restaurant in the last year because a creator told them to.</p>
+          <p>But cracking creator marketing yourself is brutal. Sourcing creators in your city. Negotiating per-post rates. Writing briefs. Chasing deliverables. Measuring what actually worked. Most restaurants try it once, get a single disappointing post for $800, and quit.</p>
+          <p style="font-weight: 600; color: var(--text-primary); margin-top: 28px;">That's not creator marketing. That's a wasted afternoon.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-it-works" id="how-it-works">
+    <div class="container">
+      <div class="eyebrow section-eyebrow">How it works</div>
+      <h2 class="section-heading">A creator program that <em>runs itself,</em> from a flat subscription.</h2>
+      <p class="section-intro">Four steps from signup to verified attribution. No vendor management, no contract chasing, no spreadsheets.</p>
+
+      <div class="steps-grid">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-title">Tell us about your restaurant</div>
+          <div class="step-body">Cuisine, vibe, neighborhoods, target customer. The 15-minute version, not the 200-page brand book.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-title">We build your local roster</div>
+          <div class="step-body">Two to eight vetted food creators per program, selected for brand alignment and audience fit — not follower count.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-title">Always-on content</div>
+          <div class="step-body">4 to 30+ pieces of content per month across TikTok, Reels, and Stories. Multiple touchpoints spread over weeks.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div class="step-title">Verified attribution</div>
+          <div class="step-body">Every creator gets a trackable code. Pay $6 per verified first-time customer visit. Half goes to the creator who drove it.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY RESTAURANTS WIN -->
+  <section class="why-win">
+    <div class="container">
+      <div class="eyebrow section-eyebrow">Why restaurants win</div>
+      <h2 class="section-heading">Built for the way customers actually <em>decide.</em></h2>
+
+      <div class="pillars-grid">
+        <div class="pillar">
+          <div class="pillar-icon">↻</div>
+          <div class="pillar-title">Repetition that converts</div>
+          <div class="pillar-body">Most consumers need to see a restaurant 2 to 3 times before walking in. One-off creator posts don't do that. Tabletop builds repeated exposure across your roster, week after week, on the platforms your customers actually use.</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">$</div>
+          <div class="pillar-title">Pay for real new customers</div>
+          <div class="pillar-body">Subscription covers content production. On top, you pay $6 per verified first-time customer redemption. Spend scales with results. No "we got 800K impressions" reports that don't pay rent.</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">✱</div>
+          <div class="pillar-title">Real creator alignment</div>
+          <div class="pillar-body">We don't sell the 500K-follower influencer who'd post about anything for $1,500. We find locally-famous food creators with 30K engaged followers in your zip code who eat at restaurants like yours.</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">→</div>
+          <div class="pillar-title">No content theater</div>
+          <div class="pillar-body">Every campaign comes with a dashboard. See which creators drove which redemptions, average check size, repeat visit rate. You'll know what worked and where to lean in next month.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <div class="eyebrow section-eyebrow">Pricing</div>
+      <h2 class="section-heading">Three tiers. <em>Pick the one</em> that matches your operation.</h2>
+      <p class="section-intro">Every tier includes creator vetting, contracting, content scheduling, code attribution, and monthly reporting. No surprise add-ons.</p>
+
+      <div class="pricing-grid">
+        <div class="price-card">
+          <div class="price-tier">Local</div>
+          <div class="price-for">For independent restaurants and single-location operators</div>
+          <div class="price-amount">
+            <div class="price-num">$1,500</div>
+            <div class="price-period">/ month</div>
+          </div>
+          <ul class="price-features">
+            <li>2 local food creators per program</li>
+            <li>4–5 pieces of content per month</li>
+            <li>Trackable codes + attribution dashboard</li>
+            <li>Setup and onboarding included</li>
+          </ul>
+          <div class="price-perf">+ $6 per verified new-customer redemption</div>
+          <a class="btn" onclick="scrollToSection('final-cta')">Get started<span class="arrow">→</span></a>
+        </div>
+
+        <div class="price-card featured">
+          <div class="price-tier">Group</div>
+          <div class="price-for">For small groups (2–5 locations) and emerging CPG food brands</div>
+          <div class="price-amount">
+            <div class="price-num">$3,500</div>
+            <div class="price-period">/ month</div>
+          </div>
+          <ul class="price-features">
+            <li>3–4 creators per program, rotating quarterly</li>
+            <li>8–10 pieces of content per month</li>
+            <li>POS integration (Toast, Square)</li>
+            <li>Quarterly creator dinner content shoots</li>
+            <li>Cohort tracking dashboard</li>
+          </ul>
+          <div class="price-perf">+ $6 per verified new-customer redemption</div>
+          <a class="btn" onclick="scrollToSection('final-cta')">Get started<span class="arrow">→</span></a>
+        </div>
+
+        <div class="price-card">
+          <div class="price-tier">Regional</div>
+          <div class="price-for">For multi-location chains and scaling regional brands</div>
+          <div class="price-amount">
+            <div class="price-num">$8,500</div>
+            <div class="price-period">/ month</div>
+          </div>
+          <ul class="price-features">
+            <li>6–8 creators per program</li>
+            <li>18+ pieces of content per month</li>
+            <li>Managed paid amplification of top content</li>
+            <li>Dedicated account manager</li>
+            <li>Custom revenue-tied reporting</li>
+          </ul>
+          <div class="price-perf">+ $6 per verified new-customer redemption</div>
+          <a class="btn" onclick="scrollToSection('final-cta')">Talk to sales<span class="arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="eyebrow section-eyebrow">From our partners</div>
+      <h2 class="section-heading">Restaurants are <em>finally getting</em> creator marketing right.</h2>
+
+      <div class="testimonial-grid">
+        <div class="testimonial">
+          <div class="testimonial-text">"We spent two years trying to do creator deals ourselves and got nothing. Three months on Tabletop and we're seeing the same locals come back as regulars. The codes don't lie."</div>
+          <div class="testimonial-attr">
+            <div class="testimonial-avatar">SC</div>
+            <div>
+              <div class="testimonial-name">Sarah Chen</div>
+              <div class="testimonial-role">Owner, Hearth & Hue · Austin</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <div class="testimonial-text">"What sold me is they paid for themselves in 60 days. The performance fee model means I'm only paying for visits I can verify. I'd never go back to Yelp ads."</div>
+          <div class="testimonial-attr">
+            <div class="testimonial-avatar">MR</div>
+            <div>
+              <div class="testimonial-name">Marcus Reyes</div>
+              <div class="testimonial-role">Owner, Casa Mira Group · Nashville</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <div class="testimonial-text">"I run six restaurants. Used to have a marketing person doing one-off creator deals. Now Tabletop runs the program and we got our marketing role back as a strategy hire instead of a vendor manager."</div>
+          <div class="testimonial-attr">
+            <div class="testimonial-avatar">AK</div>
+            <div>
+              <div class="testimonial-name">Amelia Kowalski</div>
+              <div class="testimonial-role">Director of Marketing, Brooklyn Plate Co.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta" id="final-cta">
+    <div class="container">
+      <div class="final-cta-inner">
+        <h2>Ready to see what Tabletop can <em>do for your restaurant?</em></h2>
+        <p>Book a 20-minute demo and we'll show you a sample creator roster in your city — actual creators, actual audiences, before you commit to anything.</p>
+        <a class="btn btn-large">Book a demo<span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+
+<!-- ============= CREATORS VIEW ============= -->
+<div class="creators-view">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">Tabletop for Creators</div>
+          <h1>Get paid every month. <em>Earn more</em> every time your post brings in a customer.</h1>
+          <p class="hero-sub">The platform where local food creators build real income with restaurants in their city. Monthly retainers. Affiliate commissions on every new customer. Brand partnerships that match your voice.</p>
+          <div class="hero-ctas">
+            <a class="btn btn-primary btn-large" onclick="scrollToSection('look-for')">Apply to join<span class="arrow">→</span></a>
+            <a class="hero-secondary" onclick="scrollToSection('earnings')">See real earnings ↓</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-stat-card top">
+            <div class="avatar">$</div>
+            <div>
+              <div class="label">Deposited Nov 1</div>
+              <div class="value">$1,735.00 <span class="accent">total</span></div>
+            </div>
+          </div>
+          <div class="hero-stat-card bottom">
+            <div class="avatar">📍</div>
+            <div>
+              <div class="label">Active partnerships</div>
+              <div class="value">4 restaurants · Austin</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE PITCH -->
+  <section class="problem">
+    <div class="container">
+      <div class="problem-grid">
+        <div>
+          <div class="eyebrow section-eyebrow">The pitch</div>
+          <h2 class="section-heading">One-off DMs aren't a <em>creator career.</em></h2>
+        </div>
+        <div class="problem-body">
+          <p>If you've spent a year posting food content in your city, you already know the problem with brand deals. They're one-offs. They come from DMs. They pay erratically.</p>
+          <p>The brief is twelve pages of legal language and three rounds of "can we make the food look brighter." You take the gig because $400 is $400. And then you wait three months for the next one.</p>
+          <p>That's not a creator career. That's freelance gig work.</p>
+          <p style="font-family: 'Fraunces', serif; font-size: 28px; line-height: 1.2; color: var(--text-primary); margin-top: 36px; font-weight: 500; letter-spacing: -0.01em;">Tabletop is what comes <em style="font-style: italic; color: var(--terracotta); font-variation-settings: 'opsz' 144, 'SOFT' 100;">next.</em></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CREATORS LOVE IT -->
+  <section class="why-creators">
+    <div class="container">
+      <div class="eyebrow section-eyebrow">Why creators love Tabletop</div>
+      <h2 class="section-heading">Recurring income. <em>Real upside.</em> Restaurants you'd actually recommend.</h2>
+
+      <div class="creator-love-grid">
+        <div class="love-item">
+          <div class="love-icon">∞</div>
+          <div class="love-content">
+            <h3>Predictable monthly income</h3>
+            <p>Recurring retainers paid on the 1st of every month. Not "we'll get back to you about next quarter." Not 60-day net terms. Same deposit, every month, for as long as you and the restaurant want to keep going.</p>
+          </div>
+        </div>
+        <div class="love-item">
+          <div class="love-icon">↑</div>
+          <div class="love-content">
+            <h3>Earn more when your content works</h3>
+            <p>Every restaurant code that comes through your post earns you a $3 affiliate commission on top of your retainer. Top performers in our Year 1 pilot earned 2–3x the average creator on the same program.</p>
+          </div>
+        </div>
+        <div class="love-item">
+          <div class="love-icon">★</div>
+          <div class="love-content">
+            <h3>Restaurants you'd actually eat at</h3>
+            <p>We match for brand fit and audience overlap. Not follower count. You'll never get paired with a chain whose food contradicts your aesthetic just because they had budget.</p>
+          </div>
+        </div>
+        <div class="love-item">
+          <div class="love-icon">✎</div>
+          <div class="love-content">
+            <h3>Creative freedom, real briefs</h3>
+            <p>No scripts. Talking points, free meals, full creative control over voice and format. Tell the story the way your audience expects to hear it from you.</p>
+          </div>
+        </div>
+        <div class="love-item">
+          <div class="love-icon">⚡</div>
+          <div class="love-content">
+            <h3>Fast pay. Always.</h3>
+            <p>Direct deposit. No invoicing. No chasing accounts payable. You will never wait 60 days for $400 again. Promise.</p>
+          </div>
+        </div>
+        <div class="love-item">
+          <div class="love-icon">🍴</div>
+          <div class="love-content">
+            <h3>Free meals at every partner</h3>
+            <p>For you and a guest. Every month, for as long as you're in the program. Standard, not a perk.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EARNINGS EXAMPLES -->
+  <section class="earnings" id="earnings">
+    <div class="container">
+      <div class="eyebrow section-eyebrow">Real earnings</div>
+      <h2 class="section-heading">What creators are <em>actually making</em> on Tabletop.</h2>
+      <p class="section-intro">Real numbers from the Year 3 program model. The point isn't any single figure — it's that these are <strong>recurring</strong>.</p>
+
+      <div class="earnings-grid">
+        <div class="earnings-card">
+          <div class="earnings-profile">
+            <div class="earnings-avatar">M</div>
+            <div>
+              <div class="earnings-name">Maria</div>
+              <div class="earnings-meta">Austin · 35K followers</div>
+            </div>
+          </div>
+          <div class="earnings-line">
+            <span>4 partnerships @ $400</span>
+            <span class="earnings-amount">$1,600</span>
+          </div>
+          <div class="earnings-line">
+            <span>Affiliate (45 redemptions)</span>
+            <span class="earnings-amount">$135</span>
+          </div>
+          <div class="earnings-total">
+            <span class="earnings-total-label">Per month</span>
+            <span class="earnings-total-amount">$1,735</span>
+          </div>
+          <div class="earnings-note">+ free meals at 4 restaurants every month</div>
+        </div>
+
+        <div class="earnings-card highlight">
+          <div class="earnings-profile">
+            <div class="earnings-avatar">J</div>
+            <div>
+              <div class="earnings-name">Jamal</div>
+              <div class="earnings-meta">Brooklyn · 95K followers</div>
+            </div>
+          </div>
+          <div class="earnings-line">
+            <span>6 partnerships @ $500</span>
+            <span class="earnings-amount">$3,000</span>
+          </div>
+          <div class="earnings-line">
+            <span>Affiliate (130 redemptions)</span>
+            <span class="earnings-amount">$390</span>
+          </div>
+          <div class="earnings-total">
+            <span class="earnings-total-label">Per month</span>
+            <span class="earnings-total-amount">$3,390</span>
+          </div>
+          <div class="earnings-note">Top performer in two programs · Q3 2026</div>
+        </div>
+
+        <div class="earnings-card">
+          <div class="earnings-profile">
+            <div class="earnings-avatar">P</div>
+            <div>
+              <div class="earnings-name">Priya</div>
+              <div class="earnings-meta">Nashville · 18K (high engagement)</div>
+            </div>
+          </div>
+          <div class="earnings-line">
+            <span>3 partnerships @ $375</span>
+            <span class="earnings-amount">$1,125</span>
+          </div>
+          <div class="earnings-line">
+            <span>Affiliate (70 redemptions)</span>
+            <span class="earnings-amount">$210</span>
+          </div>
+          <div class="earnings-total">
+            <span class="earnings-total-label">Per month</span>
+            <span class="earnings-total-amount">$1,335</span>
+          </div>
+          <div class="earnings-note">Niche specialist · proves engagement &gt; reach</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT WE LOOK FOR -->
+  <section class="look-for" id="look-for">
+    <div class="container">
+      <div class="eyebrow section-eyebrow">Apply to join</div>
+      <h2 class="section-heading">What we look for in <em>Tabletop creators.</em></h2>
+
+      <div class="look-list">
+        <div class="look-item">
+          <h3>Hyperlocal focus</h3>
+          <p>You post food content in a specific city or region. Hyperlocal creators win on this platform. National food creators are great for cookbook deals; they don't drive foot traffic.</p>
+        </div>
+        <div class="look-item">
+          <h3>Engaged audience</h3>
+          <p>We look at engagement rate, save rate, and how often your comments include "trying this!" — not follower count. Strong micro creators (10K–100K) typically outperform big accounts.</p>
+        </div>
+        <div class="look-item">
+          <h3>Craft</h3>
+          <p>Quality matters. Lighting, sound, narrative. We're not asking for high production value — authenticity beats production every time — but we are asking for craft.</p>
+        </div>
+        <div class="look-item">
+          <h3>Long-term mindset</h3>
+          <p>Tabletop only works if creators stay. We don't do one-off campaigns. If you're shopping for the highest single-post rate, we're not your platform.</p>
+        </div>
+      </div>
+
+      <div class="dont-list">
+        <h3>What we <em style="font-style: italic; color: var(--peach); font-variation-settings: 'opsz' 144, 'SOFT' 100;">don't</em> do</h3>
+        <ul>
+          <li>Negotiate you down to nothing on rate</li>
+          <li>Send 12-page contracts</li>
+          <li>Ask for "rights in perpetuity"</li>
+          <li>Use your content for ads without paying you</li>
+          <li>Send payment late, ever</li>
+          <li>Match you with brands you wouldn't pick yourself</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta">
+    <div class="container">
+      <div class="final-cta-inner">
+        <h2>Drop your handle. We'll get back to you <em>within 7 days.</em></h2>
+        <p>Tell us your city, your favorite three restaurants in your neighborhood, and what kind of food content you make. Two minutes.</p>
+        <a class="btn btn-large">Apply to join Tabletop<span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ============= FOOTER ============= -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="logo">Tabletop<span class="dot" style="color: var(--peach);">.</span></a>
+        <p class="footer-tagline">Creator marketing for restaurants. Built for the way customers actually decide.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <a onclick="showView('restaurants')">For restaurants</a>
+        <a onclick="showView('creators')">For creators</a>
+        <a>Pricing</a>
+        <a>Case studies</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a>About</a>
+        <a>Careers</a>
+        <a>Press</a>
+        <a>Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <a>Creator economy report</a>
+        <a>Restaurant benchmarks</a>
+        <a>Help center</a>
+        <a>Blog</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a>Privacy</a>
+        <a>Terms</a>
+        <a>Cookie policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Tabletop. All rights reserved.</span>
+      <span>Made with care in Austin, TX</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function showView(view) {
+    document.body.className = 'view-' + view;
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }
+  function scrollToSection(id) {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+</script>
+
+</body>
+</html>
